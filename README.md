@@ -1,4 +1,7 @@
+Zastanawiam się mocno nad refaktoryzacją tego kodu zanim zacznę coś dalej tworzyć
+
 # erpeg
+
 
 ## Project setup
 ```

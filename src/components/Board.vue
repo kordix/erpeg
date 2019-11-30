@@ -1,6 +1,6 @@
 <template>
 <div class="" style="margin:auto;width:440px">
-    <p>Twoje życie:{{player.life}}</p> <p v-if="player.life <= 0">Przegrałeś życie weź coś na warsztat zamiast grać w tą wujową gierkę</p>
+    <p>Twoje życie:{{player.life}}</p> <p v-if="player.life <= 0">Skończyło ci się życie koniec gry</p>
     <div class="row" v-for="y in 20">
         <field v-for="x in 20" :coord="{x:x,y:y}"></field>
         <div class="" style="clear:both"></div>

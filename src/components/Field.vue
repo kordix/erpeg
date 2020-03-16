@@ -11,11 +11,12 @@ export default {
     props:['coord'],
     data(){
         return {
-            fieldColor:'white'
+            // fieldColor:'white',
+            fieldObject:null
         }
     },
     watch:{
-        enemies:{
+        objects:{
             deep:true,
             handler:function(){
                 let self=this;
@@ -27,7 +28,7 @@ export default {
     computed:{
         ...mapState({
             player:'player',
-            enemies:'enemies',
+            objects:'objects',
             currentEnemy:'currentEnemy'
         }),
         fieldPlayer(){
@@ -36,22 +37,33 @@ export default {
             }else {
                 return false
             }
+        },
+        fieldObjectC(){
+            return this.objects.find((el)=>el.coords.x == this.coord.x && el.coords.y == this.coord.y)
+        },
+        fieldColor(){
+            if(this.fieldObjectC){
+                return this.fieldObjectC.color
+            }else{
+                return 'white'
+            }
         }
     },
     methods:{
         generateColor(){
-            console.log('gencolor');
-            this.fieldColor='white';
+            // console.log('gencolor');
+            // this.fieldColor='white';
 
-            for(let i=0;i<this.enemies.length;i++){
-                if(this.coord.x == this.enemies[i].coords.x && this.coord.y == this.enemies[i].coords.y){
-                    this.fieldColor='red';
-                }
-            }
+            // for(let i=0;i<this.objects.length;i++){
+            //     if(this.coord.x == this.objects[i].coords.x && this.coord.y == this.objects[i].coords.y){
+            //         this.fieldColor='red';
+            //     }
+            // }
         }
     },
     mounted(){
-        this.generateColor();
+        // this.getObject();
+        // this.generateColor();
     }
 
 }

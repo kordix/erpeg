@@ -2,7 +2,11 @@
   <div id="app">
       <p>Tu będzie erpeg</p>
       <board></board>
-
+      <ul>
+        <li>-Losowi przeciwnicy </li>
+        <li>-Sklep</li>
+        <li>Stamina</li>
+      </ul>
   </div>
 </template>
 
@@ -11,6 +15,9 @@ import Board from './components/Board.vue';
 
 export default {
   name: 'app',
+  data:{
+    stamina:100
+  },
   components: {
         Board
   }

@@ -6,5 +6,9 @@ Vue.config.productionTip = false
 
 new Vue({
   store,
+  data:{
+    stamina:100,
+    maxstamina:100
+  },
   render: function (h) { return h(App) }
 }).$mount('#app')

@@ -35,6 +35,7 @@
         :maxvalue="processedObject.maxlife"
         :value="enemyLife"
       ></pasek>
+      Atak:{{processedObject.attack}}
     </div>
 
     <p style="font-size:10px">Ruchy:{{moves}}</p>
@@ -65,15 +66,14 @@ export default {
   computed: {
     ...mapState({
       player: "player",
-      objects: "objects",
       currentEnemy: "currentEnemy",
       moves: "moves",
       money: "money",
       exp: "exp",
     }),
     enemyLife() {
-      if (this.objects[this.currentEnemy]) {
-        return this.objects[this.currentEnemy].life;
+      if (this.$root.objects[this.currentEnemy]) {
+        return this.$root.objects[this.currentEnemy].life;
       } else {
         return {};
       }
@@ -90,6 +90,11 @@ export default {
       if ([37, 38, 39, 40].indexOf(keyCode) < 0) {
         return;
       }
+
+        if(this.$store.state.moves % 15 == 0){
+            console.log('powinno genneroać enemy bo jest podzielne przez 10');
+            this.$root.generateObject()
+        }
 
       this.showEnemyDialogue = false;
       this.showShopDialogue = false;
@@ -124,10 +129,10 @@ export default {
       this.$store.state.moves += 1;
       // console.log(coordsLater);
 
-      this.processedObject = this.objects.find(
+      this.processedObject = this.$root.objects.find(
         (el) => el.coords.y == coordsLater.y && el.coords.x == coordsLater.x
       );
-      this.processedObjectIndex = this.objects.findIndex(
+      this.processedObjectIndex = this.$root.objects.findIndex(
         (el) => el.coords.y == coordsLater.y && el.coords.x == coordsLater.x
       );
 
@@ -149,6 +154,9 @@ export default {
         if (this.processedObject.type == "shop") {
           this.showShopDialogue = true;
         }
+
+      
+
         return;
       }
 
@@ -167,7 +175,7 @@ export default {
       this.$store.state.currentEnemy = i;
       this.showEnemyDialogue = true;
 
-      let enemy = this.objects[i];
+      let enemy = this.$root.objects[i];
       console.log(enemy);
 
       enemy.life -= this.player.attack;

@@ -26,9 +26,11 @@ export default {
         }
     },
     computed:{
+        objects(){
+            return this.$root.objects
+        },
         ...mapState({
             player:'player',
-            objects:'objects',
             currentEnemy:'currentEnemy'
         }),
         fieldPlayer(){

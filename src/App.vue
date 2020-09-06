@@ -4,8 +4,10 @@
       <board></board>
       <ul>
         <li>-Losowi przeciwnicy </li>
-        <li>-Sklep</li>
-        <li>Stamina</li>
+        <li>-bonusy na mapie</li>
+        <li>-świątynia</li>
+        <li>-potiony</li>
+        <li>-miecz,tarcza,sloty</li>
       </ul>
   </div>
 </template>
@@ -15,8 +17,10 @@ import Board from './components/Board.vue';
 
 export default {
   name: 'app',
-  data:{
+  data(){
+    return {
     stamina:100
+    }
   },
   components: {
         Board

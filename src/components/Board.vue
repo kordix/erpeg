@@ -62,8 +62,8 @@ export default {
   },
   computed: {
     enemyLife() {
-      if (this.$root.objects[this.currentEnemy]) {
-        return this.$root.objects[this.currentEnemy].life;
+      if (this.$root.objects[this.$root.currentEnemy]) {
+        return this.$root.objects[this.$root.currentEnemy].life;
       } else {
         return {};
       }

@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store'
 
 Vue.config.productionTip = false
 
 new Vue({
-  store,
   data:{
       stamina: 100,
       maxstamina: 100,
@@ -17,6 +15,12 @@ new Vue({
         { id: 5, type: 'shop', coords: { x: 15, y: 15 }, color: 'gray' }
 
       ],
+      player:{coords:{x:5,y:10},attack:10,life:70 },
+      money:50,
+      exp:0,
+      level:1,
+      moves:0,
+      currentEnemy:''
 
   },
   methods: {

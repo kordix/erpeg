@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
 
 export default {
     props:['coord'],
@@ -29,12 +28,8 @@ export default {
         objects(){
             return this.$root.objects
         },
-        ...mapState({
-            player:'player',
-            currentEnemy:'currentEnemy'
-        }),
         fieldPlayer(){
-            if(this.coord.x == this.player.coords.x && this.coord.y == this.player.coords.y){
+            if(this.coord.x == this.$root.player.coords.x && this.coord.y == this.$root.player.coords.y){
                 return true
             }else {
                 return false

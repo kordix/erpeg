@@ -6,9 +6,6 @@
 </template>
 
 <script>
-import {
-    mapState
-} from 'vuex';
 
 export default {
     data() {
@@ -26,9 +23,9 @@ export default {
     methods: {
         buy(index) {
             let item = this.items[index];
-            if (this.$store.state.money >= item.price) {
-                this.$store.state.money -= item.price;
-                this.$store.state.player.attack += item.attack;
+            if (this.$root.money >= item.price) {
+                this.$root.money -= item.price;
+                this.$root.player.attack += item.attack;
                 this.errors.push('kupiono '+item.name)
             }else{
                 this.errors.push('Nie masz tyle kasy'); 
@@ -39,9 +36,7 @@ export default {
         this.error = ''
     },
     computed: {
-        ...mapState([
-            'player'
-        ]),
+  
     }
 };
 </script>

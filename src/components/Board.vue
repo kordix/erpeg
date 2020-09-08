@@ -5,9 +5,9 @@
       <p>Exp:{{exp}}</p>
     </div>
     <p style="display:inline">Twoje życie:</p>
-    <pasek :color="'red'" :fontcolor="'white'" :maxvalue="70" :value="player.life"></pasek>
-    <p>Atak: {{$store.state.player.attack}}</p>
-    <p v-if="player.life <= 0">Skończyło ci się życie koniec gry</p>
+    <pasek :color="'red'" :fontcolor="'white'" :maxvalue="70" :value="$root.player.life"></pasek>
+    <p>Atak: {{$root.player.attack}}</p>
+    <p v-if="$root.player.life <= 0">Skończyło ci się życie koniec gry</p>
     <p style>
       Stamina:
       <pasek :color="'blue'" :fontcolor="'white'" :maxvalue="$root.maxstamina" :value="$root.stamina"></pasek>
@@ -47,9 +47,6 @@ import Field from "./Field.vue";
 import Pasek from "./Pasek.vue";
 import Shop from "./Shop.vue";
 
-
-import { mapState } from "vuex";
-
 export default {
   components: {
     Field,Pasek,Shop
@@ -64,13 +61,6 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      player: "player",
-      currentEnemy: "currentEnemy",
-      moves: "moves",
-      money: "money",
-      exp: "exp",
-    }),
     enemyLife() {
       if (this.$root.objects[this.currentEnemy]) {
         return this.$root.objects[this.currentEnemy].life;
@@ -84,14 +74,14 @@ export default {
       if (this.interacted) {
         return;
       }
-      if (this.player.life <= 0) {
+      if (this.$root.player.life <= 0) {
         return;
       }
       if ([37, 38, 39, 40].indexOf(keyCode) < 0) {
         return;
       }
 
-        if(this.$store.state.moves % 15 == 0){
+        if(this.$root.moves % 15 == 0){
             console.log('powinno genneroać enemy bo jest podzielne przez 10');
             this.$root.generateObject()
         }
@@ -99,7 +89,7 @@ export default {
       this.showEnemyDialogue = false;
       this.showShopDialogue = false;
       let self = this;
-      let coordsNow = this.$store.state.player.coords;
+      let coordsNow = this.$root.player.coords;
       let coordsLater = JSON.parse(JSON.stringify(coordsNow));
 
       if (keyCode === 37) {
@@ -126,7 +116,7 @@ export default {
         console.log("inny przycisk");
       }
 
-      this.$store.state.moves += 1;
+      this.$root.moves += 1;
       // console.log(coordsLater);
 
       this.processedObject = this.$root.objects.find(
@@ -145,7 +135,7 @@ export default {
 
         if (this.processedObject.type == "factory") {
           if (this.$root.stamina > 0) {
-            this.$store.state.money += 2;
+            this.$root.money += 2;
             this.$root.stamina -= 10;
             this.restorelife();
           }
@@ -168,29 +158,29 @@ export default {
       // }
       this.restorelife();
       this.restore("stamina");
-      this.$store.state.player.coords.x = coordsLater.x;
-      this.$store.state.player.coords.y = coordsLater.y;
+      this.$root.player.coords.x = coordsLater.x;
+      this.$root.player.coords.y = coordsLater.y;
     },
     attack(i) {
-      this.$store.state.currentEnemy = i;
+      this.$root.currentEnemy = i;
       this.showEnemyDialogue = true;
 
       let enemy = this.$root.objects[i];
       console.log(enemy);
 
-      enemy.life -= this.player.attack;
-      this.player.life -= enemy.attack;
+      enemy.life -= this.$root.player.attack;
+      this.$root.player.life -= enemy.attack;
       if (enemy.life <= 0) {
         enemy.coords.x = 1000;
         enemy.coords.y = 1000;
-        this.$store.state.exp += 10;
-        this.$store.state.money += enemy.gold;
+        this.$root.exp += 10;
+        this.$root.money += enemy.gold;
       }
     },
     restorelife() {
-      if (this.$store.state.player.life >= 70) {
+      if (this.$root.player.life >= 70) {
         return;
-      } else this.$store.state.player.life += 1;
+      } else this.$root.player.life += 1;
     },
     restore(param) {
       if (this.$root[param] >= this.$root["max" + param]) {

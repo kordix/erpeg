@@ -1,13 +1,13 @@
 <template>
   <div class style="margin:auto;width:800px">
     <div style="display:flex;justify-content:center" id="infos">
-      <p>Kasa: {{money}}</p>
-      <p>Exp:{{exp}}</p>
+      <p><b> Kasa: </b> {{$root.money}}</p>
+      <p><b>Exp: </b> {{$root.exp}}</p>
     </div>
     <p style="display:inline">Twoje życie:</p>
     <pasek :color="'red'" :fontcolor="'white'" :maxvalue="70" :value="$root.player.life"></pasek>
     <p>Atak: {{$root.player.attack}}</p>
-    <p v-if="$root.player.life <= 0">Skończyło ci się życie koniec gry</p>
+    <p v-if="$root.player.life <= 0"><b> Skończyło ci się życie koniec gry</b></p>
     <p style>
       Stamina:
       <pasek :color="'blue'" :fontcolor="'white'" :maxvalue="$root.maxstamina" :value="$root.stamina"></pasek>
@@ -35,10 +35,10 @@
         :maxvalue="processedObject.maxlife"
         :value="enemyLife"
       ></pasek>
-      Atak:{{processedObject.attack}}
+     <b> Atak: </b>{{processedObject.attack}}
     </div>
 
-    <p style="font-size:10px">Ruchy:{{moves}}</p>
+    <p style="font-size:10px">Ruchy:{{$root.moves}}</p>
   </div>
 </template>
 

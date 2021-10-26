@@ -2,7 +2,7 @@
   <div class style="margin:auto;width:800px">
     <div style="display:flex;justify-content:center" id="infos">
       <p><b> Kasa: </b> {{$root.money}}</p>
-      <p><b>Exp: </b> {{$root.exp}}</p>
+      <p><b>Wynik: </b> {{$root.exp}}</p>
     </div>
     <p style="display:inline">Twoje życie:</p>
     <pasek :color="'red'" :fontcolor="'white'" :maxvalue="70" :value="$root.player.life"></pasek>
@@ -37,6 +37,8 @@
       ></pasek>
      <b> Atak: </b>{{processedObject.attack}}
     </div>
+
+    <!-- <button>Eliksir (10HP) </button> -->
 
     <p style="font-size:10px">Ruchy:{{$root.moves}}</p>
   </div>
@@ -81,7 +83,7 @@ export default {
         return;
       }
 
-        if(this.$root.moves % 15 == 0){
+        if(this.$root.moves % 10 == 0){
             console.log('powinno genneroać enemy bo jest podzielne przez 10');
             this.$root.generateObject()
         }
@@ -173,7 +175,7 @@ export default {
       if (enemy.life <= 0) {
         enemy.coords.x = 1000;
         enemy.coords.y = 1000;
-        this.$root.exp += 10;
+        this.$root.exp += enemy.attack;
         this.$root.money += enemy.gold;
       }
     },
@@ -202,6 +204,11 @@ export default {
       // e.preventDefault();
       self.interacted = false;
     });
+
+            this.$root.generateObject()
+            this.$root.generateObject()
+            this.$root.generateObject()
+
   },
 };
 </script>

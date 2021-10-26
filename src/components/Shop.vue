@@ -2,7 +2,7 @@
 <div>
     <p v-if="errors" v-for="error in errors">{{error}}</p>
     <button @click="buy(0)">Kup topór (+3) 20g</button><br>
-    <button @click="buy(1)">Eliksir (+10HP) 10g</button>
+    <button @click="buy(1)">Leczenie (+10HP) 6g</button>
 
 </div>
 </template>
@@ -24,10 +24,10 @@ export default {
             },
             {
                 id: 2,
-                code:'hppotion',
+                code:'healing',
                 error:'',
                 name: "eliksir",
-                price: 10,
+                price: 6,
                 attack: 0,
                 life:10
                 

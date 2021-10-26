@@ -3,9 +3,6 @@
       <p>Tu będzie erpeg</p>
       <board></board>
       <ul>
-        <li>-Losowi przeciwnicy </li>
-        <li>-bonusy na mapie</li>
-        <li>-świątynia</li>
         <li>-potiony</li>
         <li>-miecz,tarcza,sloty</li>
       </ul>

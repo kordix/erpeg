@@ -8,9 +8,9 @@ new Vue({
       stamina: 100,
       maxstamina: 100,
       objects: [
-        { id: 1, type: 'enemy', coords: { x: 1, y: 1 }, color: '#DD0000', maxlife: 80, life: 80, attack: 5, gold: 10 },
-        { id: 2, type: 'enemy', coords: { x: 10, y: 10 }, color: '#FF6666', maxlife: 45, life: 40, attack: 5, gold: 5 },
-        { id: 3, type: 'enemy', coords: { x: 12, y: 12 }, color: '#FF0000', maxlife: 60, life: 60, attack: 5, gold: 6 },
+        // { id: 1, type: 'enemy', coords: { x: 1, y: 1 }, color: '#DD0000', maxlife: 80, life: 80, attack: 5, gold: 10 },
+        // { id: 2, type: 'enemy', coords: { x: 10, y: 10 }, color: '#FF6666', maxlife: 45, life: 40, attack: 5, gold: 5 },
+        // { id: 3, type: 'enemy', coords: { x: 12, y: 12 }, color: '#FF0000', maxlife: 60, life: 60, attack: 5, gold: 6 },
         { id: 4, type: 'factory', coords: { x: 10, y: 15 }, color: 'yellow', moneyfactor: 5 },
         { id: 5, type: 'shop', coords: { x: 15, y: 15 }, color: 'gray' }
 
@@ -29,7 +29,7 @@ new Vue({
       let x = Math.floor(Math.random() * 20);
       let y = Math.floor(Math.random() * 20);
 
-      let life = Math.floor(Math.random() * 100);
+      let life = Math.floor(Math.random() * 100 * 1.2);
 
       let color = '';
 
@@ -56,9 +56,9 @@ new Vue({
       }
 
     
-      gold = Math.ceil(life / 10);
+      gold = Math.ceil((life / 10) * 0.8 );
 
-      attack = Math.ceil(life / 20);
+      attack = Math.ceil((life / 20) * 2);
 
 
 

@@ -35,6 +35,7 @@ new Vue({
 
       let gold = 15;
       let attack = 5;
+      
 
 
 
@@ -54,6 +55,11 @@ new Vue({
       if(life > 71 && life <= 100){
         color = '#DD0000'
       }
+
+      if(life > 100){
+        color = '#AA0000'
+      }
+
 
     
       gold = Math.ceil((life / 10) * 0.8 );

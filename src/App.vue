@@ -2,9 +2,9 @@
   <div id="app">
       <p>Tu będzie erpeg</p>
       <board></board>
+      <p>To do:</p>
       <ul>
-        <li>-potiony</li>
-        <li>-miecz,tarcza,sloty</li>
+        <li>-zapisywanie wyników</li>
       </ul>
   </div>
 </template>

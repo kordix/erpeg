@@ -2,10 +2,8 @@
   <div id="app">
       <p>Tu będzie erpeg</p>
       <board></board>
-      <p>To do:</p>
-      <ul>
-        <li>-zapisywanie wyników</li>
-      </ul>
+
+      <p>Wyniki: {{$root.scores}}</p>
   </div>
 </template>
 

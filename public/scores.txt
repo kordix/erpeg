@@ -1,0 +1,1 @@
+[{"nick":"kordi","wynik":0}]

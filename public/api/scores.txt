@@ -1,0 +1,1 @@
+[{nick:kordi,score:1}]

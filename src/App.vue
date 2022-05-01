@@ -3,7 +3,10 @@
       <p>Tu będzie erpeg</p>
       <board></board>
 
-      <p>Wyniki: {{$root.scores}}</p>
+      <p>Wyniki: <br>
+
+        <span v-for="elem in $root.scores"><b>{{elem.nick}}</b>:{{elem.wynik}} <br></span>
+      </p>
   </div>
 </template>
 

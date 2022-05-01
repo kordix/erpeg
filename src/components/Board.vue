@@ -7,7 +7,7 @@
     <p style="display:inline">Twoje życie:</p>
     <pasek :color="'red'" :fontcolor="'white'" :maxvalue="70" :value="$root.player.life"></pasek>
     <p>Atak: {{$root.player.attack}}</p>
-    <p v-if="$root.player.life <= 0"><b> Skończyło ci się życie koniec gry</b><button @click="$root.save()">Zapisz wynik</button></p>
+    <p v-if="$root.player.life <= 0"><b> Skończyło ci się życie koniec gry</b> <label for=""> Podaj nick:</label>  <input type="text" v-model="$root.nick">  <button @click="$root.save()" v-if="!$root.savedscore">Zapisz wynik</button><span v-if="$root.savedscore" style="color:red"> Dziękujemy, wynik został zapisany. Odśwież strone.</span> </p>
     <p style>
       Stamina:
       <pasek :color="'blue'" :fontcolor="'white'" :maxvalue="$root.maxstamina" :value="$root.stamina"></pasek>

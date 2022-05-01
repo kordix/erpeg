@@ -21,7 +21,12 @@ new Vue({
     level: 1,
     moves: 0,
     currentEnemy: '',
-    scores: []
+    nick: 'dupa',
+    savedscore:false,
+    scores:   [],
+
+
+  
 
   },
   methods: {
@@ -75,19 +80,33 @@ new Vue({
       this.objects.push(obj)
     },
     async save() {
-      console.log(this.scores);
-      this.scores.push({ nick: 'kordi', wynik: this.exp });
-      console.log(this.scores);
+      this.scores.push({ nick: this.nick, wynik: this.exp });
 
       let points = JSON.stringify(this.scores);
 
       await axios.post('api/write.php', { tekst: points });
 
+      this.savedscore = true;
+
+      console.log(this.savedscore);
+
     },
     async getScores() {
       let self = this;
-      await fetch('/api/read.php').then((res) => res.json()).then((res) => { self.scores = res })
-  },
+      await fetch('/api/read.php').then((res) => res.json()).then((res) => { self.scores = res }).then((res)=>self.sortScores())
+    },
+    async sortScores(){
+      this.scores = this.scores.sort(function(a, b) {
+        var keyA = a['wynik'];
+        var keyB = b['wynik'];
+        // Compare the 2 dates
+        if (keyA > keyB) return -1;
+        if (keyA < keyB) return 1;
+        return 0;
+    });
+
+    this.scores = this.scores.slice(0,5);
+    }
   },
   mounted() {
     // this.generateObject();

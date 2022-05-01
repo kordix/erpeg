@@ -1,1 +1,1 @@
-[{"nick":"kordi","wynik":0}]
+[{"nick":"kordi","wynik":2},{"nick":"kordi","wynik":5},{"nick":"kordi","wynik":3}]

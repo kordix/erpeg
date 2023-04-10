@@ -7,7 +7,10 @@
     <p style="display:inline">Twoje życie:</p>
     <pasek :color="'red'" :fontcolor="'white'" :maxvalue="70" :value="$root.player.life"></pasek>
     <p>Atak: {{$root.player.attack}}</p>
-    <p v-if="$root.moves >= 500 || $root.player.life <= 0"><b v-if="$root.moves >= 500">Wyczerpałeś limit 500 ruchów koniec gry</b>  <b v-if="$root.player.life <= 0"> Skończyło ci się życie koniec gry</b> <label for=""> Podaj nick:</label>  <input type="text" v-model="$root.nick">  <button @click="$root.save()" v-if="!$root.savedscore">Zapisz wynik</button><span v-if="$root.savedscore" style="color:red"> Dziękujemy, wynik został zapisany. Odśwież strone.</span> </p>
+    <p v-if="$root.moves >= $root.moveslimit || $root.player.life <= 0"><b v-if="$root.moves >= $root.moveslimit">Wyczerpałeś limit {{$root.moveslimit}} ruchów koniec gry</b>  <b v-if="$root.player.life <= 0"> Skończyło ci się życie koniec gry</b> <label for=""> Podaj nick:</label>  <input type="text" v-model="$root.nick">  <button @click="$root.save()" v-if="!$root.savedscore">Zapisz wynik</button><span v-if="$root.savedscore" style="color:red"> Dziękujemy, wynik został zapisany. Odśwież strone.</span> </p>
+    
+    
+    
     <p style>
       Stamina:
       <pasek :color="'blue'" :fontcolor="'white'" :maxvalue="$root.maxstamina" :value="$root.stamina"></pasek>
@@ -73,6 +76,16 @@ export default {
   },
   methods: {
     move(keyCode) {
+
+      if(this.$root.moves >= this.$root.moveslimit){
+
+        this.$root.endgame = 1;
+        this.$root.runout = 1;
+
+        return;
+        
+
+      }
   
       if (this.$root.player.life <= 0) {
         this.$root.endgame = 1;
@@ -154,6 +167,12 @@ export default {
 
         if (this.processedObject.type == "shop") {
           this.showShopDialogue = true;
+        }
+
+        if (this.processedObject.type == "buyfactory") {
+          // this.showShopDialogue = true;
+
+          console.log('BUYFACTORY');
         }
 
       

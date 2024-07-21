@@ -43,7 +43,7 @@
 
     <!-- <button>Eliksir (10HP) </button> -->
 
-    <p style="font-size:10px">Ruchy:{{$root.moves}}</p>
+    <p style="font-size:10px">Ruchy:{{$root.moves}} Pozostało ruchów: {{$root.moveslimit -  $root.moves}}</p>
   </div>
 </template>
 
